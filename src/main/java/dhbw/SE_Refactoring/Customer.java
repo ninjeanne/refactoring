@@ -25,28 +25,56 @@ class Customer {
         TotalAmount totalAmount = new TotalAmount();
         RenterPoints renterPoints = new RenterPoints();
         Enumeration enum_rentals = rentals.elements();
-        String result = "Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        String result = printCustomerDetails();
+        result += printHeader();
 
         while (enum_rentals.hasMoreElements()) {
-            double thisAmount = 0;
+            double thisAmount;
             Rental each = (Rental) enum_rentals.nextElement();
-            //determine amounts for each line
+
             thisAmount = amountFor(each);
-            // add frequent renter points
             renterPoints.increase();
-            // add bonus for a two day new release rental
             renterPoints.increaseBonus(each);
-            //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + thisAmount + "\n";
+            result += printDetails(each, thisAmount);
             totalAmount.increase(thisAmount);
         }
-        //add footer lines
-        result += totalAmount;
-        result += renterPoints;
+        result += printFooter(totalAmount, renterPoints);
         return result;
     }
 
+    private String printCustomerDetails(){
+        return "Rental Record for " + this.getName() + "\n";
+    }
+
+    private String printHeader(){
+        return "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+    }
+
+    /**
+     * add footer lines
+     * @param totalAmount the calculated total amount of the renting of the customer
+     * @param renterPoints the renter points for the customer
+     * @return the footer lines
+     */
+    private String printFooter(TotalAmount totalAmount, RenterPoints renterPoints){
+        return totalAmount.toString() + renterPoints.toString();
+    }
+
+    /**
+     * show figures for this rental
+     * @param rental current rental
+     * @param amount price amount of current rental
+     * @return Details of the rental including the movie title, the days rented and the amount
+     */
+    private String printDetails(Rental rental, double amount) {
+        return "\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + amount + "\n";
+    }
+
+    /**
+     * determine amounts for current rental
+     * @param each current rental
+     * @return price of current rental
+     */
     private double amountFor(Rental each) {
         double thisAmount = 0;
         switch (each.getMovie().getPriceCode()) {
