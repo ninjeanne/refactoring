@@ -22,7 +22,7 @@ class Customer {
     }
 
     public String statement() {
-        double totalAmount = 0;
+        TotalAmount totalAmount = new TotalAmount();
         RenterPoints renterPoints = new RenterPoints();
         Enumeration enum_rentals = rentals.elements();
         String result = "Rental Record for " + this.getName() + "\n";
@@ -41,10 +41,10 @@ class Customer {
             }
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + thisAmount + "\n";
-            totalAmount += thisAmount;
+            totalAmount.increase(thisAmount);
         }
         //add footer lines
-        result += "Amount owed is " + totalAmount + "\n";
+        result += totalAmount;
         result += renterPoints;
         return result;
     }
