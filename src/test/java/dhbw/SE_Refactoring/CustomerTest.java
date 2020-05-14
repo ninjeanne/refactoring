@@ -2,7 +2,6 @@ package dhbw.SE_Refactoring;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class CustomerTest {
@@ -12,22 +11,22 @@ public class CustomerTest {
     private Customer customer;
 
     @Before
-    public void beforeEach(){
+    public void beforeEach() {
         movie = new Movie("title", PriceCode.REGULAR);
-        rental= new Rental(movie, 4);
+        rental = new Rental(movie, 4);
         customer = new Customer("someName");
     }
 
     @Test
-    public void initialize(){
+    public void initialize() {
         Customer customer = new Customer("someName");
         Assert.assertEquals("someName", customer.getName());
     }
 
     @Test
-    public void statementRegular(){
+    public void statementRegular() {
         movie = new Movie("title", PriceCode.REGULAR);
-        rental= new Rental(movie, 2);
+        rental = new Rental(movie, 2);
         customer = new Customer("someName");
         customer.addRental(rental);
         Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t2\t2.0\n" + "Amount owed is 2.0\n"
@@ -35,9 +34,9 @@ public class CustomerTest {
     }
 
     @Test
-    public void statementRegularOtherDays(){
+    public void statementRegularOtherDays() {
         movie = new Movie("title", PriceCode.REGULAR);
-        rental= new Rental(movie, 30);
+        rental = new Rental(movie, 30);
         customer = new Customer("someName");
         customer.addRental(rental);
         Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t30\t44.0\n" + "Amount owed is 44.0\n"
@@ -45,9 +44,9 @@ public class CustomerTest {
     }
 
     @Test
-    public void statementRelease(){
+    public void statementRelease() {
         movie = new Movie("title", PriceCode.NEW_RELEASE);
-        rental= new Rental(movie, 2);
+        rental = new Rental(movie, 2);
         customer = new Customer("someName");
         customer.addRental(rental);
         Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t2\t6.0\n" + "Amount owed is 6.0\n"
@@ -55,20 +54,21 @@ public class CustomerTest {
     }
 
     @Test
-    public void statementReleaseMultipleRentals(){
+    public void statementReleaseMultipleRentals() {
         movie = new Movie("title", PriceCode.NEW_RELEASE);
-        rental= new Rental(movie, 2);
+        rental = new Rental(movie, 2);
         customer = new Customer("someName");
         customer.addRental(rental);
         customer.addRental(rental);
-        Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t2\t6.0\n" + "\ttitle\t\t2\t6.0\n"
-                + "Amount owed is 12.0\n" + "You earned 4 frequent renter points", customer.statement());
+        Assert.assertEquals(
+                "Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t2\t6.0\n" + "\ttitle\t\t2\t6.0\n" + "Amount owed is 12.0\n"
+                        + "You earned 4 frequent renter points", customer.statement());
     }
 
     @Test
-    public void statementReleaseFrequentPoints(){
+    public void statementReleaseFrequentPoints() {
         movie = new Movie("title", PriceCode.NEW_RELEASE);
-        rental= new Rental(movie, 30);
+        rental = new Rental(movie, 30);
         customer = new Customer("someName");
         customer.addRental(rental);
         Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t30\t90.0\n" + "Amount owed is 90.0\n"
@@ -76,9 +76,9 @@ public class CustomerTest {
     }
 
     @Test
-    public void statementChildrens(){
+    public void statementChildrens() {
         movie = new Movie("title", PriceCode.CHILDRENS);
-        rental= new Rental(movie, 2);
+        rental = new Rental(movie, 2);
         customer = new Customer("someName");
         customer.addRental(rental);
         Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t2\t1.5\n" + "Amount owed is 1.5\n"
@@ -86,14 +86,12 @@ public class CustomerTest {
     }
 
     @Test
-    @Ignore
-    public void statementWrongDays(){
+    public void statementWrongDays() {
         movie = new Movie("title", PriceCode.REGULAR);
-        rental= new Rental(movie, -1);
+        rental = new Rental(movie, -1);
         customer = new Customer("someName");
         customer.addRental(rental);
-        Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t-1\t2.0\n" + "Amount owed is 2.0\n"
+        Assert.assertEquals("Rental Record for someName\n" + "\tTitle\t\tDays\tAmount\n" + "\ttitle\t\t1\t2.0\n" + "Amount owed is 2.0\n"
                 + "You earned 1 frequent renter points", customer.statement());
-        Assert.assertTrue(false);//should fail!
     }
 }
