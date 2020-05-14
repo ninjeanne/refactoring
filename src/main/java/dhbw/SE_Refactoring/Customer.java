@@ -57,7 +57,7 @@ class Customer {
             case NEW_RELEASE:
                 thisAmount += rental.getDaysRented() * 3;
                 break;
-            case CHILDRENS:
+            case CHILDREN:
                 thisAmount += 1.5;
                 if (rental.getDaysRented() > 3) {
                     thisAmount += (rental.getDaysRented() - 3) * 1.5;

@@ -77,7 +77,7 @@ public class CustomerTest {
 
     @Test
     public void statementChildrens() {
-        movie = new Movie("title", PriceCode.CHILDRENS);
+        movie = new Movie("title", PriceCode.CHILDREN);
         rental = new Rental(movie, 2);
         customer = new Customer("someName");
         customer.addRental(rental);

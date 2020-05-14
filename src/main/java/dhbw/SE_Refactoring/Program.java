@@ -5,11 +5,11 @@ public class Program {
     /**
      * This is the main entry point for the application
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         String result;
-        System.out.println("Welcome to the dhbw.SE_Refactoring.Movie Store");
+        System.out.println("Welcome to the Movie Store");
         Movie m1 = new Movie("movie1", PriceCode.NEW_RELEASE);
-        Movie m2 = new Movie("movie2", PriceCode.CHILDRENS);
+        Movie m2 = new Movie("movie2", PriceCode.CHILDREN);
         Rental r1 = new Rental(m1, 10);
         Rental r2 = new Rental(m2, 5);
         Customer c1 = new Customer("joe");
