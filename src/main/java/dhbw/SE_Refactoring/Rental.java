@@ -26,4 +26,8 @@ class Rental {
         }
         this.daysRented = daysRented;
     }
+
+    public double getPrice(){
+        return movie.getPriceCode().getPrice(daysRented);
+    }
 }
