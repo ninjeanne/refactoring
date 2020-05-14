@@ -8,6 +8,10 @@ class Customer {
     private final Vector<Rental> rentals = new Vector<Rental>();
 
     public Customer(String name) {
+        if (name == null) {
+            this.name = "unknown";
+            return;
+        }
         this.name = name;
     }
 
