@@ -1,6 +1,7 @@
 package dhbw.SE_Refactoring;
 
 public class CustomerLogger {
+
     private final StringBuilder builder = new StringBuilder();
     private final Customer customer;
     private final TotalAmount totalAmount;

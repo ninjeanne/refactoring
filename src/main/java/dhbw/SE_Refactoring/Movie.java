@@ -2,7 +2,7 @@ package dhbw.SE_Refactoring;
 
 public class Movie {
 
-    private String title;
+    private final String title;
     private PriceCode priceCode;
 
     public Movie(String title, PriceCode priceCode) {
@@ -25,4 +25,5 @@ public class Movie {
     public String getTitle() {
         return title;
     }
+
 }

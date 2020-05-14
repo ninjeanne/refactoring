@@ -3,6 +3,7 @@ package dhbw.SE_Refactoring;
 import java.util.Vector;
 
 class Customer {
+
     private final String name;
     private final Vector<Rental> rentals = new Vector<Rental>();
 
@@ -24,8 +25,7 @@ class Customer {
         CustomerLogger logger = new CustomerLogger(this, renterPoints, totalAmount);
 
         for (Rental currentRental : rentals) {
-            double thisAmount;
-            thisAmount = amountFor(currentRental);
+            double thisAmount = amountFor(currentRental);
             renterPoints.increase();
             renterPoints.increaseBonus(currentRental);
             logger.addDetails(currentRental, thisAmount);
@@ -38,25 +38,25 @@ class Customer {
     /**
      * determine amounts for current rental
      *
-     * @param each current rental
+     * @param rental current rental
      * @return price of current rental
      */
-    private double amountFor(Rental each) {
+    private double amountFor(Rental rental) {
         double thisAmount = 0;
-        switch (each.getMovie().getPriceCode()) {
+        switch (rental.getMovie().getPriceCode()) {
             case REGULAR:
                 thisAmount += 2;
-                if (each.getDaysRented() > 2) {
-                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                if (rental.getDaysRented() > 2) {
+                    thisAmount += (rental.getDaysRented() - 2) * 1.5;
                 }
                 break;
             case NEW_RELEASE:
-                thisAmount += each.getDaysRented() * 3;
+                thisAmount += rental.getDaysRented() * 3;
                 break;
             case CHILDRENS:
                 thisAmount += 1.5;
-                if (each.getDaysRented() > 3) {
-                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                if (rental.getDaysRented() > 3) {
+                    thisAmount += (rental.getDaysRented() - 3) * 1.5;
                 }
                 break;
         }
