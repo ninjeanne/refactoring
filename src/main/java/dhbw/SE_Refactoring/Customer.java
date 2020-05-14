@@ -40,12 +40,12 @@ class Customer {
                 frequentRenterPoints++;
             }
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(thisAmount) + "\n";
+            result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + thisAmount + "\n";
             totalAmount += thisAmount;
         }
         //add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        result += "Amount owed is " + totalAmount + "\n";
+        result += "You earned " + frequentRenterPoints + " frequent renter points";
         return result;
     }
 
