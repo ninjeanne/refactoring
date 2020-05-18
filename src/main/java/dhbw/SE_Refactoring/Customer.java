@@ -1,11 +1,11 @@
 package dhbw.SE_Refactoring;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 class Customer {
 
     private final String name;
-    private final Vector<Rental> rentals = new Vector<Rental>();
+    private final ArrayList<Rental> rentals = new ArrayList<Rental>();
 
     public Customer(String name) {
         if (name == null) {
@@ -16,7 +16,7 @@ class Customer {
     }
 
     public void addRental(Rental rental) {
-        rentals.addElement(rental);
+        rentals.add(rental);
     }
 
     public String getName() {
